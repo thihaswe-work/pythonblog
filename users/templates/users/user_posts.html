@@ -1,0 +1,10 @@
+{% extends "base.html" %} {% block content %}
+<h2>Posts by {{ user.username }}</h2>
+<ul>
+  {% for post in posts %}
+  <li>{{ post.title }} ({{ post.created_at|date:"Y-m-d" }})</li>
+  {% empty %}
+  <li>This user has not published any posts yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
