@@ -1,10 +1,55 @@
 {% extends "base.html" %} {% block content %}
-<h2>Posts by {{ user.username }}</h2>
-<ul>
-  {% for post in posts %}
-  <li>{{ post.title }} ({{ post.created_at|date:"Y-m-d" }})</li>
-  {% empty %}
-  <li>This user has not published any posts yet.</li>
-  {% endfor %}
-</ul>
+<div class="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+  <h2 class="text-3xl font-bold mb-6 text-gray-800">
+    Posts by {{ user.username }}
+  </h2>
+
+  <ul class="space-y-4">
+    {% for post in posts %}
+    <li
+      class="p-4 bg-white rounded shadow-md hover:shadow-lg transition duration-200"
+    >
+      <div class="flex justify-between">
+        <div class="flex items-center">
+          <div>{{ post.title }}</div>
+          <span class="text-gray-600 text-sm"
+            >- {{ post.author.username }}</span
+          >
+        </div>
+        <div class="gap-10 flex">
+          <a
+            href="/post/{{ post.slug }}/"
+            class="text-blue-500 font-semibold hover:underline"
+          >
+            Details
+          </a>
+
+          <form
+            action="/post/{{ post.slug }}/delete/"
+            method="post"
+            style="display: inline"
+          >
+            {% csrf_token %}
+            <button
+              type="submit"
+              class="text-red-500 font-semibold hover:underline bg-transparent border-none cursor-pointer"
+            >
+              Delete
+            </button>
+          </form>
+        </div>
+      </div>
+    </li>
+    {% empty %}
+    <li class="text-gray-500">This user has not published any posts yet.</li>
+    {% endfor %}
+  </ul>
+
+  <a
+    href="{% url 'create_post' %}"
+    class="mt-6 inline-block px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition duration-200"
+  >
+    + Create New Post
+  </a>
+</div>
 {% endblock %}

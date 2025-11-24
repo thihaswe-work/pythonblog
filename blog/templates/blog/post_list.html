@@ -1,13 +1,28 @@
 {% extends "base.html" %} {% block content %}
-<h2>All Blog Posts</h2>
-<ul>
+
+<h2 class="text-2xl font-bold mb-6 text-blue-600">All Blog Posts</h2>
+
+<ul class="space-y-3">
   {% for post in posts %}
-  <li>
-    <a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a> - {{
-    post.author.username }}
+  <li
+    class="p-4 bg-white rounded shadow-md hover:shadow-lg transition duration-200"
+  >
+    <div class="flex justify-between">
+      <div class="flex items-center">
+        <div>{{ post.title }}</div>
+        <span class="text-gray-600 text-sm">- {{ post.author.username }}</span>
+      </div>
+      <a
+        href="{% url 'post_detail' post.slug %}"
+        class="text-blue-500 font-semibold hover:underline"
+      >
+        Details
+      </a>
+    </div>
   </li>
   {% empty %}
-  <li>No posts yet.</li>
+  <li class="text-gray-500">No posts yet.</li>
   {% endfor %}
 </ul>
+
 {% endblock %}

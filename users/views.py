@@ -16,7 +16,8 @@ def register_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect("")
+            return redirect("post_list")  # name of your post list URL
+
     else:
         form = RegisterForm()
     return render(request, "users/register.html", {"form": form})
@@ -41,3 +42,5 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect("post_list")
+
+

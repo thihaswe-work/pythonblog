@@ -1,6 +1,29 @@
-{% if user.is_authenticated %}
-<a href="{% url 'logout' %}">Logout</a>
-{% else %}
-<a href="{% url 'login' %}">Login</a>
-<a href="{% url 'register' %}">Register</a>
-{% endif %}
+<nav class="flex gap-4">
+  <a
+    href="/"
+    class="hover:underline {% if request.path == '/' %}underline font-bold{% endif %}"
+    >Home</a
+  >
+
+  {% if user.is_authenticated %}
+  <a
+    href="{% url 'logout' %}"
+    class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition {% if request.path == '/users/logout/' %}underline font-bold{% endif %}"
+  >
+    Logout
+  </a>
+  {% else %}
+  <a
+    href="{% url 'login' %}"
+    class="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 transition {% if request.path == '/users/login/' %}underline font-bold{% endif %}"
+  >
+    Login
+  </a>
+  <a
+    href="{% url 'register' %}"
+    class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition {% if request.path == '/users/register/' %}underline font-bold{% endif %}"
+  >
+    Register
+  </a>
+  {% endif %}
+</nav>
