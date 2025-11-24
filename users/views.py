@@ -1,12 +1,11 @@
-from django.shortcuts import render
-
-# Create your views here.
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate,logout
 from django.contrib.auth.models import User
 from .forms import RegisterForm
 from django.contrib.auth.forms import AuthenticationForm
-
+from django.contrib.auth.decorators import login_required
+import os
+# Create your views here.
 
 def register_view(request):
     if request.method == "POST":
@@ -41,4 +40,22 @@ def logout_view(request):
     logout(request)
     return redirect("post_list")
 
+@login_required
+def edit_profile(request):
+    profile = request.user.profile  # get current user's profile
 
+    if request.method == "POST":
+        bio = request.POST.get("bio", "")
+        avatar = request.FILES.get("avatar")
+
+        profile.bio = bio
+        if avatar:
+             if profile.avatar:
+                old_avatar_path = profile.avatar.path
+                if os.path.isfile(old_avatar_path):
+                    os.remove(old_avatar_path)
+        profile.avatar = avatar
+        profile.save()
+        return redirect("/")  # change to whatever your profile view name is
+
+    return render(request, "users/edit_profile.html", {"profile": profile})

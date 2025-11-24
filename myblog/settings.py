@@ -53,10 +53,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'myblog.urls'
 
+# MEDIA_URL = '/'
+# MEDIA_ROOT = BASE_DIR 
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-    "DIRS": [BASE_DIR / "templates"],  # global templates
+        "DIRS": [BASE_DIR / "templates"],  # global templates
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

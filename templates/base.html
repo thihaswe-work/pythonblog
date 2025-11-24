@@ -31,24 +31,17 @@
             class="px-3 py-1 rounded hover:bg-yellow-100 {% if current_path == '/users/'|add:user.username|add:'/posts/' %}border-b-2 border-yellow-600 font-semibold{% endif %}"
             >My Posts</a
           >
-
-          <!-- <a
-            href="{% url 'create_post' %}"
-            class="px-3 py-1 rounded hover:bg-green-100 {% if current_path == '/post/create/' %}border-b-2 border-green-600 font-semibold{% endif %}"
-            >Create Post</a
-          > -->
-
+          <a
+            href="{% url 'edit_profile' %}"
+            class="px-3 py-1 rounded hover:bg-green-100 {% if current_path == '/users/edit/' %}border-b-2 border-green-600 font-semibold{% endif %}"
+          >
+            Edit Profile
+          </a>
           <a
             href="{% url 'category_list' %}"
             class="px-3 py-1 rounded hover:bg-purple-100 {% if current_path == '/categories/' %}border-b-2 border-purple-600 font-semibold{% endif %}"
             >Categories</a
           >
-          <!-- 
-          <a
-            href="{% url 'create_category' %}"
-            class="px-3 py-1 rounded hover:bg-purple-100 {% if current_path == '/categories/create/' %}border-b-2 border-purple-600 font-semibold{% endif %}"
-            >Create Category</a
-          > -->
 
           <a
             href="{% url 'logout' %}"
