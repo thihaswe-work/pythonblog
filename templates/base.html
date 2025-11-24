@@ -6,7 +6,7 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="bg-gray-100 text-gray-900 font-sans">
+  <body class="bg-gray-100 text-gray-900 font-sans flex flex-col min-h-screen">
     <!-- Header -->
     <header class="bg-white shadow-md">
       <div class="container mx-auto flex justify-between items-center p-4">
@@ -32,23 +32,23 @@
             >My Posts</a
           >
 
-          <a
+          <!-- <a
             href="{% url 'create_post' %}"
             class="px-3 py-1 rounded hover:bg-green-100 {% if current_path == '/post/create/' %}border-b-2 border-green-600 font-semibold{% endif %}"
             >Create Post</a
-          >
+          > -->
 
           <a
             href="{% url 'category_list' %}"
             class="px-3 py-1 rounded hover:bg-purple-100 {% if current_path == '/categories/' %}border-b-2 border-purple-600 font-semibold{% endif %}"
             >Categories</a
           >
-
+          <!-- 
           <a
             href="{% url 'create_category' %}"
             class="px-3 py-1 rounded hover:bg-purple-100 {% if current_path == '/categories/create/' %}border-b-2 border-purple-600 font-semibold{% endif %}"
             >Create Category</a
-          >
+          > -->
 
           <a
             href="{% url 'logout' %}"
@@ -75,7 +75,7 @@
 
     <!-- Main content -->
     <main
-      class="container mx-auto mt-6 p-6 bg-white rounded-md shadow-md min-h-[80vh]"
+      class="container mx-auto mt-6 p-6 bg-white rounded-md shadow-md flex-1"
     >
       {% block content %}{% endblock %}
     </main>
