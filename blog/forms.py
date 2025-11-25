@@ -9,7 +9,6 @@ class PostForm(forms.ModelForm):
         fields = ["title", "content", "category"]
 
 
-
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category

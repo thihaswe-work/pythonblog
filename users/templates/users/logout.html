@@ -4,7 +4,6 @@
     class="hover:underline {% if request.path == '/' %}underline font-bold{% endif %}"
     >Home</a
   >
-
   {% if user.is_authenticated %}
   <a
     href="{% url 'logout' %}"

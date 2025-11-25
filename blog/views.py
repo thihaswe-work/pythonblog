@@ -93,6 +93,7 @@ def edit_category(request, category_id):
             return redirect("category_list")
     else:
         form = CategoryForm(instance=category)
+    
     return render(request, "blog/edit_category.html", {"form": form})
 
 @login_required
@@ -102,8 +103,8 @@ def delete_category(request, category_id):
     if request.method == "POST":
         category.delete()
         return redirect("category_list")
+    
     return render(request, "blog/delete_category.html", {"category": category})
-
 
 
 #Sessions

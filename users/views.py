@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import login, authenticate,logout
+from django.contrib.auth import login,logout
 from django.contrib.auth.models import User
 from .forms import RegisterForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 import os
+
 # Create your views here.
 
 def register_view(request):
@@ -14,7 +15,6 @@ def register_view(request):
             user = form.save()
             login(request, user)
             return redirect("post_list")  # name of your post list URL
-
     else:
         form = RegisterForm()
     return render(request, "users/register.html", {"form": form})
@@ -34,7 +34,6 @@ def login_view(request):
     else:
         form = AuthenticationForm()
     return render(request, "users/login.html", {"form": form})
-
 
 def logout_view(request):
     logout(request)
