@@ -103,3 +103,24 @@ def delete_category(request, category_id):
         category.delete()
         return redirect("category_list")
     return render(request, "blog/delete_category.html", {"category": category})
+
+
+
+#Sessions
+from django.http import JsonResponse
+
+def get_count(request):
+    count = request.session.get("count", 0)
+    return JsonResponse({"count": count})
+
+def increase_count(request):
+    count = request.session.get("count", 0)
+    count += 1
+    request.session["count"] = count
+    return JsonResponse({"count": count})
+
+def decrease_count(request):
+    count = request.session.get("count", 0)
+    count -= 1
+    request.session["count"] = count
+    return JsonResponse({"count": count})

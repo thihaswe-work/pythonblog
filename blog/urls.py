@@ -2,6 +2,12 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+
+    # sessions
+    path("session/get/", views.get_count),
+    path("session/increase/", views.increase_count),
+    path("session/decrease/", views.decrease_count),
+
     path("", views.post_list, name="post_list"),
     path("post/create/", views.create_post, name="create_post"),
     path("post/<slug:slug>/delete/", views.delete_post, name="delete_post"),

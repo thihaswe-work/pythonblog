@@ -70,7 +70,44 @@
     <main
       class="container mx-auto mt-6 p-6 bg-white rounded-md shadow-md flex-1"
     >
-      {% block content %}{% endblock %}
+      {% block content %}{% endblock %} {% block session %}
+      <div class="mt-4">
+        <button
+          id="increaseBtn"
+          class="px-4 py-2 bg-blue-600 text-white rounded"
+        >
+          Increase
+        </button>
+        <button
+          id="decreaseBtn"
+          class="px-4 py-2 bg-red-600 text-white rounded"
+        >
+          Decrease
+        </button>
+        <span class="ml-3">Count: <span id="count">0</span></span>
+      </div>
+
+      <script>
+        const countSpan = document.getElementById("count");
+
+        // Load from server on page load
+        fetch("/session/get/")
+          .then((res) => res.json())
+          .then((data) => (countSpan.textContent = data.count));
+
+        document.getElementById("increaseBtn").onclick = () => {
+          fetch("/session/increase/")
+            .then((res) => res.json())
+            .then((data) => (countSpan.textContent = data.count));
+        };
+
+        document.getElementById("decreaseBtn").onclick = () => {
+          fetch("/session/decrease/")
+            .then((res) => res.json())
+            .then((data) => (countSpan.textContent = data.count));
+        };
+      </script>
+      {% endblock %}
     </main>
 
     <!-- Footer -->
